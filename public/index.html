@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinkedIn Jobs Finder</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fab fa-linkedin"></i> LinkedIn Jobs Finder</h1>
+            <p>Find your next career opportunity</p>
+        </header>
+
+        <div class="search-section">
+            <form id="jobSearchForm" class="search-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="keyword">Keyword</label>
+                        <input type="text" id="keyword" name="keyword" placeholder="e.g., JavaScript Developer">
+                    </div>
+                    <div class="form-group">
+                        <label for="location">Location</label>
+                        <input type="text" id="location" name="location" placeholder="e.g., India" value="India">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="jobType">Job Type</label>
+                        <select id="jobType" name="jobType">
+                            <option value="">Any</option>
+                            <option value="full time" selected>Full Time</option>
+                            <option value="part time">Part Time</option>
+                            <option value="contract">Contract</option>
+                            <option value="temporary">Temporary</option>
+                            <option value="internship">Internship</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="experienceLevel">Experience Level</label>
+                        <select id="experienceLevel" name="experienceLevel">
+                            <option value="">Any</option>
+                            <option value="internship">Internship</option>
+                            <option value="entry level" selected>Entry Level</option>
+                            <option value="associate">Associate</option>
+                            <option value="senior">Senior</option>
+                            <option value="director">Director</option>
+                            <option value="executive">Executive</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="remoteFilter">Work Type</label>
+                        <select id="remoteFilter" name="remoteFilter">
+                            <option value="">Any</option>
+                            <option value="on-site">On-site</option>
+                            <option value="remote" selected>Remote</option>
+                            <option value="hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="dateSincePosted">Date Posted</label>
+                        <select id="dateSincePosted" name="dateSincePosted">
+                            <option value="">Any time</option>
+                            <option value="24hr">Past 24 hours</option>
+                            <option value="past week" selected>Past week</option>
+                            <option value="past month">Past month</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="limit">Number of Jobs</label>
+                        <select id="limit" name="limit">
+                            <option value="5">5 jobs</option>
+                            <option value="10" selected>10 jobs</option>
+                            <option value="20">20 jobs</option>
+                            <option value="50">50 jobs</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="sortBy">Sort By</label>
+                        <select id="sortBy" name="sortBy">
+                            <option value="recent" selected>Most Recent</option>
+                            <option value="relevant">Most Relevant</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="search-btn">
+                    <i class="fas fa-search"></i> Search Jobs
+                </button>
+            </form>
+        </div>
+
+        <div class="loading" id="loading" style="display: none;">
+            <div class="spinner"></div>
+            <p>Searching for jobs...</p>
+        </div>
+
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <div class="results-header">
+                <h2>Job Results</h2>
+                <span class="job-count" id="jobCount">0 jobs found</span>
+            </div>
+            <div class="jobs-grid" id="jobsGrid">
+                <!-- Job cards will be inserted here -->
+            </div>
+        </div>
+
+        <div class="error-message" id="errorMessage" style="display: none;">
+            <i class="fas fa-exclamation-triangle"></i>
+            <p>Something went wrong. Please try again.</p>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
