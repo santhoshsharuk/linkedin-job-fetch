@@ -74,14 +74,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const card = document.createElement('div');
         card.className = 'job-card';
 
+        // Add mouse move effect for card glow
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = ((e.clientX - rect.left) / rect.width) * 100;
+            const y = ((e.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty('--mouse-x', `${x}%`);
+            card.style.setProperty('--mouse-y', `${y}%`);
+        });
+
         const formattedDate = formatDate(job.date);
-        const companyLogo = job.companyLogo || 'https://via.placeholder.com/60x60?text=Logo';
+        const companyLogo = job.companyLogo || 'https://via.placeholder.com/70x70?text=Logo';
         const salary = job.salary && job.salary !== 'Not specified' ? job.salary : 'Salary not specified';
 
         card.innerHTML = `
             <div class="job-header">
                 <img src="${companyLogo}" alt="${job.company} logo" class="company-logo" 
-                     onerror="this.src='https://via.placeholder.com/60x60/667eea/white?text=${job.company.charAt(0)}'">
+                     onerror="this.src='https://via.placeholder.com/70x70/ffffff/0a0a0a?text=${job.company.charAt(0)}'">
                 <div class="job-info">
                     <h3>${escapeHtml(job.position)}</h3>
                     <div class="company">${escapeHtml(job.company)}</div>
@@ -109,12 +118,12 @@ document.addEventListener('DOMContentLoaded', function() {
                 ${job.jobUrl ? `
                     <a href="${job.jobUrl}" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
                         <i class="fas fa-external-link-alt"></i>
-                        View Job
+                        <span>View Job</span>
                     </a>
                 ` : ''}
                 <button class="btn btn-secondary" onclick="shareJob('${escapeHtml(job.position)}', '${escapeHtml(job.company)}', '${job.jobUrl || ''}')">
                     <i class="fas fa-share"></i>
-                    Share
+                    <span>Share</span>
                 </button>
             </div>
         `;
